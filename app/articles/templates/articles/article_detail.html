@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}
+
+    {{ article.title }}
+
+{% endblock %}
+
+{% block content_title %}
+    {{  article.title }} <a href="/articles/{{ article.slug }}/delete" class="btn btn-outline-danger btn-sm">delete</a>
+                    <a href="/articles/{{ article.slug }}/edit" class="btn btn-outline-success btn-sm">edit</a>
+{% endblock %}
+
+{% block content %}
+    <div class="article">
+        <a href="{{ url_for('articles.article_detail', slug=article.slug) }}"></a>
+    </div>
+    {{ article.text }}
+{% endblock %}

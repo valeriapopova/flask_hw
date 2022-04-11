@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}
+
+    edit post
+
+{% endblock %}
+
+{% block content_title %}
+    Редактирование объявления:
+{% endblock %}
+
+{% block content %}
+    <div class="col-md-6">
+        <form action="{{ url_for('articles.edit_article', slug=article.slug) }}" method="POST">
+            {% for field in form  %}
+                <div class="form-group">
+                    {{ field.label(class='control-label') }}
+                    {{ field(class='form-control') }}
+                </div>
+            {% endfor %}
+
+            <button type="submit" class="btn btn-success">Update</button>
+
+        </form>
+    </div>
+{% endblock %}
