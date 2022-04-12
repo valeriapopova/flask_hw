@@ -3,14 +3,14 @@ from models import Article
 from app import db
 from flask import request
 from .forms import ArticleForm
-# from flask_security import login_required
+from flask_security import login_required
 
 
 articles = Blueprint('articles', __name__, template_folder="templates")
 
 
 @articles.route('/create', methods=['POST', 'GET'])
-# @login_required
+@login_required
 def create_article():
     if request.method == 'POST':
         title = request.form['title']
@@ -29,7 +29,7 @@ def create_article():
 
 
 @articles.route('/<slug>/edit', methods=['POST', 'GET'])
-# @login_required
+@login_required
 def edit_article(slug):
     article = Article.query.filter(Article.slug==slug).first_or_404()
 
@@ -44,7 +44,7 @@ def edit_article(slug):
 
 
 @articles.route('/<slug>/delete')
-# @login_required
+@login_required
 def delete_article(slug):
     article = Article.query.filter(Article.slug==slug).first_or_404()
     try:

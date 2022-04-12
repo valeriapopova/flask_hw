@@ -2,6 +2,7 @@ import re
 from app import db
 from datetime import datetime
 from flask_security import UserMixin, RoleMixin
+from werkzeug.security import generate_password_hash
 
 
 def slugify(s):
@@ -38,6 +39,9 @@ class User(db.Model, UserMixin):
     password = db.Column(db.String(255))
     active = db.Column(db.Boolean)
     roles = db.relationship('Role', secondary=roles_users, backref=db.backref('users', lazy='dynamic'))
+
+    def set_password(self, password):
+        self.password = generate_password_hash(password)
 
 
 class Role(db.Model, RoleMixin):

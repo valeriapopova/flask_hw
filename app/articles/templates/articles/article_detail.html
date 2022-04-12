@@ -7,8 +7,11 @@
 {% endblock %}
 
 {% block content_title %}
-    {{  article.title }} <a href="/articles/{{ article.slug }}/delete" class="btn btn-outline-danger btn-sm">delete</a>
-                    <a href="/articles/{{ article.slug }}/edit" class="btn btn-outline-success btn-sm">edit</a>
+    {{  article.title }}
+{% if current_user.has_role('admin') %}
+    <a href="/articles/{{ article.slug }}/delete" class="btn btn-outline-danger btn-sm">delete</a>
+    <a href="/articles/{{ article.slug }}/edit" class="btn btn-outline-success btn-sm">edit</a>
+{% endif %}
 {% endblock %}
 
 {% block content %}
